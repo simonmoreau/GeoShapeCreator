@@ -32,8 +32,8 @@ namespace GeoShapeCreator
                         {
                             Polygon polygon = new Polygon();
                             polygon.code_insee = g.code_insee;
-                            polygon.latitude = coordinate.FirstOrDefault();
-                            polygon.longitude = coordinate.LastOrDefault();
+                            polygon.longitude = coordinate.FirstOrDefault();
+                            polygon.latitude = coordinate.LastOrDefault();
                             polygon.polygon_count = polygonCount;
                             polygon.point_order = point_order;
 
@@ -55,8 +55,8 @@ namespace GeoShapeCreator
                     {
                         Polygon polygon = new Polygon();
                         polygon.code_insee = g.code_insee;
-                        polygon.latitude = coordinate.FirstOrDefault();
-                        polygon.longitude = coordinate.LastOrDefault();
+                        polygon.longitude = coordinate.FirstOrDefault();
+                        polygon.latitude = coordinate.LastOrDefault();
                         polygon.polygon_count = polygonCount;
                         polygon.point_order = point_order;
 
@@ -65,6 +65,14 @@ namespace GeoShapeCreator
                     }
                 }
             }
+
+            string geoshapePath = @"C:\Google Drive\05 - Travail\Code\RentFerret\CodesGéographiques\geoshapes.csv";
+            using (var writer = new StreamWriter(geoshapePath, false, Encoding.Default))
+            {
+                CsvWriter csvWriter = new CsvWriter(writer);
+                csvWriter.WriteRecords(polygons);
+            }
+
         }
 
         static List<geo> GetAreas(string path)
